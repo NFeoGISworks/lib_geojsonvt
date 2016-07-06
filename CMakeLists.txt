@@ -63,14 +63,14 @@ configure_file(${CMAKE_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in ${CMAKE_CURREN
 set(PUBLIC_HEADER_DIR "${CMAKE_SOURCE_DIR}/include")
 
 set(PUBLIC_HDRS
-    mapbox/geojsonvt.hpp
-    mapbox/geojsonvt/clip.hpp
-    mapbox/geojsonvt/convert.hpp
-    mapbox/geojsonvt/simplify.hpp
-    mapbox/geojsonvt/tile.hpp
-    mapbox/geojsonvt/transform.hpp
-    mapbox/geojsonvt/types.hpp
-    mapbox/geojsonvt/wrap.hpp
+    include/mapbox/geojsonvt.hpp
+    include/mapbox/geojsonvt/clip.hpp
+    include/mapbox/geojsonvt/convert.hpp
+    include/mapbox/geojsonvt/simplify.hpp
+    include/mapbox/geojsonvt/tile.hpp
+    include/mapbox/geojsonvt/transform.hpp
+    include/mapbox/geojsonvt/types.hpp
+    include/mapbox/geojsonvt/wrap.hpp
 )
 
 set(DOCS
@@ -92,18 +92,17 @@ include_directories ( ${CMAKE_SOURCE_DIR}/include )
 set(LIB_NAME)
 if(BUILD_SHARED_LIBS)
     set(LIB_NAME ${PROJECT_NAME})
-    add_library(${LIB_NAME} SHARED ${SRCS})
+    add_library(${LIB_NAME} SHARED ${SRCS} ${PUBLIC_HDRS})
     set_target_properties(${LIB_NAME} PROPERTIES SOVERSION 1)
 else()
     set(LIB_NAME ${PROJECT_NAME}static)
-    add_library(${LIB_NAME} STATIC ${SRCS})
+    add_library(${LIB_NAME} STATIC ${SRCS} ${PUBLIC_HDRS})
     set_target_properties(${LIB_NAME} PROPERTIES SOVERSION 1)
 endif()
 
 set_property(TARGET ${LIB_NAME} PROPERTY CXX_STANDARD 14)
 set_property(TARGET ${LIB_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
 target_include_directories(${LIB_NAME} PUBLIC "${INSTALL_INC_FULL_DIR}")
-target_sources(${LIB_NAME} PUBLIC ${PUBLIC_HDRS})
 target_link_extlibraries(${LIB_NAME})
 
 export(TARGETS ${LIB_NAME} FILE ${LIB_NAME}-exports.cmake EXPORT_LINK_INTERFACE_LIBRARIES)
