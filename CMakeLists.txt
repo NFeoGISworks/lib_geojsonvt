@@ -2,6 +2,7 @@
 # Project:  Lib JBIG
 # Purpose:  CMake build scripts
 # Author:   Dmitry Baryshnikov, dmitry.baryshnikov@nexgis.com
+# Author:   NikitaFeodonit, nfeodonit@yandex.com
 ################################################################################
 # Copyright (C) 2015, NextGIS <info@nextgis.com>
 #
