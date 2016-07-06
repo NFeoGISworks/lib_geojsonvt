@@ -100,6 +100,7 @@ else()
 endif()
 
 set_property(TARGET ${LIB_NAME} PROPERTY CXX_STANDARD 14)
+set_property(TARGET ${LIB_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
 target_include_directories(${LIB_NAME} PUBLIC "${INSTALL_INC_FULL_DIR}")
 target_sources(${LIB_NAME} PUBLIC ${PUBLIC_HDRS})
 target_link_extlibraries(${LIB_NAME})
